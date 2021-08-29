@@ -51,9 +51,9 @@
         "#27ae60",
       ];
       const QUESTION_TYPING_DELAY = 800;
-          const END_WORD_TYPING_MULTIPLIER = 1.5;
-          const CHARACTER_TYPING_DELAY = 20;
-          const CHARACTER_TYPING_JITTER = 50;
+      const END_WORD_TYPING_MULTIPLIER = 1.5;
+      const CHARACTER_TYPING_DELAY = 20;
+      const CHARACTER_TYPING_JITTER = 50;
       function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -109,7 +109,9 @@
         window.speechSynthesis.cancel();
         var msg = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
-        msg.voice = voices.find((v) => v.default) || voices[0];
+        const voiceScore = (x) =>
+          (x.lang.match("en") ? 2 : 0) + Number(x.default);
+        msg.voice = voices.sort((a, b) => voiceScore(b) - voiceScore(a))[0];
         msg.volume = 1;
         msg.rate = 1;
         msg.pitch = 0.8;
@@ -142,7 +144,7 @@
         const delta1 = BACK_KEYS.some((bk) => e.key === bk) ? -1 : 0;
         const delta2 = FWD_KEYS.some((bk) => e.key === bk) ? 1 : 0;
         const delta = delta1 + delta2;
-        if (!delta) return
+        if (!delta) return;
         slideQuestion(delta1 + delta2);
       });
     </script>
@@ -160,7 +162,13 @@
           navigate. Im gonna read teh queshuns if ur browsr iz not rude. Has
           fun.
         </p>
-        <p>Star dis amazin repository <a href="https://github.com/grissius/ice-smasher">grissius/ice-smasher</a> if u liek it.</p>
+        <p>
+          Star dis amazin repository
+          <a href="https://github.com/grissius/ice-smasher"
+            >grissius/ice-smasher</a
+          >
+          if u liek it.
+        </p>
       </div>
     </h1>
   </body>
