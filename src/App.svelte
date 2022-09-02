@@ -1,30 +1,22 @@
 <script lang="ts">
-	export let name: string;
+  let questions: 'questions' | null = null
+  import Question from './modules/Questions.svelte'
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  {#if questions === 'questions'}
+    <Question />
+  {:else}
+    <h1>TODO front page and shit</h1>
+    <button on:click={() => questions = 'questions'}>Questions</button>
+  {/if}
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+  main,
+  :global(body),
+  :global(html) {
+    height: 100%;
+  }
 </style>
