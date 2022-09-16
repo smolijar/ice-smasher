@@ -66,7 +66,6 @@
     height: 100%;
   }
   h1 {
-    font-family: 'Roboto Slab', serif;
     display: flex;
     justify-content: center;
     align-items: center;
